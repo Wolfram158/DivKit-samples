@@ -1,0 +1,79 @@
+{
+  "templates": {
+    "text_block": {
+      "type": "text",
+      "text": "visible_text",
+      "id": "visible_id",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "top": 8,
+        "right": 24,
+        "left": 24
+      },
+      "paddings": {
+        "top": 4,
+        "bottom": 4,
+        "left": 8,
+        "right": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#0E000000"
+        }
+      ],
+      "text_color": "#000000",
+      "font_size": 14,
+      "alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "text_alignment_horizontal": "center"
+    }
+  },
+  "card": {
+    "log_id": "sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "items": [
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "items": [
+                {
+                  "type": "text_block",
+                  "width": {
+                    "type": "wrap_content"
+                  },
+                  "text": "Это текст wrap_content"
+                },
+                {
+                  "type": "text_block",
+                  "width": {
+                    "type": "fixed",
+                    "value": 100
+                  },
+                  "text": "Это текст фиксированной ширины 100dp"
+                },
+                {
+                  "type": "text_block",
+                  "width": {
+                    "type": "match_parent"
+                  },
+                  "text": "Это текст match_parent"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
