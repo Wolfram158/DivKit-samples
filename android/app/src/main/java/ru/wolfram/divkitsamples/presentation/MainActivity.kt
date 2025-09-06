@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
 import com.yandex.div.core.Div2Context
 import com.yandex.div.core.DivConfiguration
 import com.yandex.div.picasso.PicassoDivImageLoader
@@ -20,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         this.mainModel = mainModel
     }
 
-    private val mainRoot: ViewGroup by lazy {
+    private val mainRoot: ViewGroup by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.main_root)
     }
 
-    private val component by lazy {
+    private val component by lazy(LazyThreadSafetyMode.NONE) {
         (application as App).component.addOnMessage { json ->
             val divJson = JSONObject(json)
             val templatesJson = divJson.optJSONObject("templates")

@@ -1,5 +1,8 @@
 package ru.wolfram.divkitsamples.di
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import okhttp3.OkHttpClient
 import ru.wolfram.divkitsamples.data.repository.InteractionRepositoryImpl
 import ru.wolfram.divkitsamples.domain.usecase.ConnectUseCase
@@ -20,7 +23,8 @@ class AppComponent {
         val interactionRepository = InteractionRepositoryImpl(client, onMessage)
         val connectUseCase = ConnectUseCase(interactionRepository)
         val disconnectUseCase = DisconnectUseCase(interactionRepository)
-        mainActivity.setMainModel(MainModel(connectUseCase, disconnectUseCase))
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+        mainActivity.setMainModel(MainModel(connectUseCase, disconnectUseCase, scope))
     }
 
     companion object {

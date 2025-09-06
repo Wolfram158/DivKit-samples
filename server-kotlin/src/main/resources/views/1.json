@@ -1,0 +1,84 @@
+{
+  "templates": {
+    "text_block": {
+      "type": "text",
+      "text": "1",
+      "font_size": 28,
+      "width": {
+        "type": "match_parent"
+      },
+      "text_alignment_horizontal": "center",
+      "margins": {
+        "top": 16
+      }
+    }
+  },
+  "card": {
+    "log_id": "sample_card",
+    "variables": [
+      {
+        "name": "first",
+        "type": "integer",
+        "value": 1
+      },
+      {
+        "name": "second",
+        "type": "integer",
+        "value": 2
+      },
+      {
+        "name": "third",
+        "type": "integer",
+        "value": 3
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "content_alignment_vertical": "center",
+          "height": {
+            "type": "match_parent"
+          },
+          "items": [
+            {
+              "type": "text_block",
+              "text": "@{first}"
+            },
+            {
+              "type": "text_block",
+              "text": "@{second}"
+            },
+            {
+              "type": "text_block",
+              "text": "@{third}"
+            },
+            {
+              "type": "text_block",
+              "text": "Increment",
+              "margins": {
+                "top": 48
+              },
+              "actions": [
+                {
+                  "url": "div-action://set_variable?name=first&value=@{sum(first,1)}",
+                  "log_id": "increment first"
+                },
+                {
+                  "url": "div-action://set_variable?name=second&value=@{sum(second,1)}",
+                  "log_id": "increment second"
+                },
+                {
+                  "url": "div-action://set_variable?name=third&value=@{sum(third,1)}",
+                  "log_id": "increment third"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
