@@ -1,0 +1,147 @@
+{
+  "templates": {
+    "text_block": {
+      "type": "text",
+      "text": "1",
+      "font_size": 28,
+      "width": {
+        "type": "match_parent"
+      },
+      "text_alignment_horizontal": "center",
+      "margins": {
+        "top": 0
+      },
+      "paddings": {
+        "top": 24,
+        "bottom": 24
+      }
+    },
+    "button": {
+      "type": "text",
+      "text": "Insert",
+      "font_size": 28,
+      "margins": {
+        "top": 16,
+        "start": 32
+      },
+      "paddings": {
+        "top": 16,
+        "end": 16,
+        "start": 16,
+        "bottom": 16
+      },
+      "width": {
+        "type": "wrap_content"
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#2E000000"
+        }
+      ]
+    },
+    "item": {
+      "type": "text_block",
+      "text": "",
+      "border": {
+        "stroke": {
+          "color": "#000000",
+          "width": 2
+        }
+      }
+    }
+  },
+  "card": {
+    "log_id": "sample_card",
+    "variables": [
+      {
+        "name": "items",
+        "type": "array",
+        "value": [
+        ]
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "items": [
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "content_alignment_horizontal": "center",
+              "items": [
+                {
+                  "type": "button",
+                  "text": "Insert",
+                  "margins": {
+                    "top": 16,
+                    "start": 0
+                  },
+                  "actions": [
+                    {
+                      "log_id": "insert",
+                      "typed": {
+                        "type": "array_insert_value",
+                        "value": {
+                          "type": "dict",
+                          "value": {
+                            "value": "@{len(items)}"
+                          }
+                        },
+                        "variable_name": "items"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Remove",
+                  "actions": [
+                    {
+                      "log_id": "remove",
+                      "typed": {
+                        "type": "array_remove_value",
+                        "index": "@{len(items) - 1}",
+                        "variable_name": "items"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "gallery",
+              "margins": {
+                "top": 16
+              },
+              "orientation": "vertical",
+              "item_spacing": 0,
+              "item_builder": {
+                "data": "@{items}",
+                "data_element_name": "element",
+                "prototypes": [
+                  {
+                    "div": {
+                      "type": "item",
+                      "variables": [
+                        {
+                          "type": "integer",
+                          "name": "cnt",
+                          "value": "@{len(items)}"
+                        }
+                      ],
+                      "text": "@{cnt}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
