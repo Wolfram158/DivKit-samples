@@ -66,6 +66,7 @@
         "state_id": 0,
         "div": {
           "type": "container",
+          "id": "container",
           "orientation": "vertical",
           "items": [
             {
@@ -114,6 +115,7 @@
             },
             {
               "type": "gallery",
+              "id": "gallery",
               "margins": {
                 "top": 16
               },
@@ -121,14 +123,17 @@
               "item_spacing": 0,
               "item_builder": {
                 "data": "@{items}",
+                "id": "item_builder",
                 "data_element_name": "element",
                 "prototypes": [
                   {
                     "div": {
                       "type": "item",
+                      "id": "item",
                       "variables": [
                         {
                           "type": "integer",
+                          "id": "cnt",
                           "name": "cnt",
                           "value": "@{len(items)}"
                         }

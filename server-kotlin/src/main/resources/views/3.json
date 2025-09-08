@@ -1,0 +1,147 @@
+{
+  "templates": {
+    "title": {
+      "type": "text",
+      "font_size": 20,
+      "line_height": 24,
+      "font_weight": "bold",
+      "paddings": {
+        "left": 24,
+        "right": 24,
+        "bottom": 16
+      }
+    },
+    "control_button": {
+      "type": "image",
+      "scale": "fit",
+      "aspect": {
+        "ratio": 1
+      },
+      "width": {
+        "type": "fixed",
+        "value": 44
+      }
+    }
+  },
+  "card": {
+    "log_id": "sample_card",
+    "variables": [
+      {
+        "name": "video_time",
+        "type": "integer",
+        "value": 0
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "margins": {
+            "top": 24,
+            "bottom": 24
+          },
+          "items": [
+            {
+              "type": "title",
+              "text": "Video"
+            },
+            {
+              "type": "video",
+              "id": "video1",
+              "video_sources": [
+                {
+                  "typr": "video_source",
+                  "url": "https://yastatic.net/s3/home/divkit/bears.mp4",
+                  "mime_type": "video/mp4"
+                },
+                {
+                  "type": "video_source",
+                  "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                  "mime_type": "video/mp4"
+                }
+              ],
+              "repeatable": false,
+              "margins": {
+                "bottom": 20,
+                "top": 20
+              },
+              "autostart": false,
+              "muted": true,
+              "elapsed_time_variable": "video_time",
+              "height": {
+                "type": "fixed",
+                "value": 320
+              },
+              "background": [
+                {
+                  "type": "solid",
+                  "color": "#000000"
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "orientation": "horizontal",
+              "width": {
+                "type": "match_parent"
+              },
+              "height": {
+                "type": "wrap_content"
+              },
+              "content_alignment_horizontal": "center",
+              "content_alignment_vertical": "center",
+              "items": [
+                {
+                  "type": "control_button",
+                  "image_url": "https://yastatic.net/s3/home/divkit/rewind_button.png",
+                  "margins": {
+                    "right": 20
+                  },
+                  "actions": [
+                    {
+                      "log_id": "rewind",
+                      "url": "div-action://set_variable?name=video_time&value=0"
+                    }
+                  ]
+                },
+                {
+                  "type": "control_button",
+                  "image_url": "https://yastatic.net/s3/home/divkit/play_button.png",
+                  "margins": {
+                    "right": 15
+                  },
+                  "paddings": {
+                    "top": 3,
+                    "bottom": 3
+                  },
+                  "actions": [
+                    {
+                      "log_id": "play",
+                      "url": "div-action://video?id=video1&action=start"
+                    }
+                  ]
+                },
+                {
+                  "type": "control_button",
+                  "image_url": "https://yastatic.net/s3/home/divkit/pause_button.png",
+                  "paddings": {
+                    "top": 3,
+                    "bottom": 3
+                  },
+                  "actions": [
+                    {
+                      "log_id": "pause",
+                      "url": "div-action://video?id=video1&action=pause"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

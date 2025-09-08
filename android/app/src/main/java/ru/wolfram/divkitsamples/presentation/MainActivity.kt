@@ -6,11 +6,14 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import com.yandex.div.core.Div2Context
 import com.yandex.div.core.DivConfiguration
 import com.yandex.div.picasso.PicassoDivImageLoader
 import org.json.JSONObject
 import ru.wolfram.divkitsamples.R
+import ru.wolfram.divkitsamples.presentation.player.ExoDivPlayerFactory
+import ru.wolfram.divkitsamples.presentation.player.ExoDivPlayerView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainModel: MainModel
@@ -42,8 +45,23 @@ class MainActivity : AppCompatActivity() {
                             LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
                         gravity = Gravity.CENTER
                     }
+                release(mainRoot)
                 mainRoot.removeAllViews()
                 mainRoot.addView(divView)
+            }
+        }
+    }
+
+    private fun release(viewGroup: ViewGroup) {
+        viewGroup.children.forEach {
+            when (it) {
+                is ExoDivPlayerView -> {
+                    it.player?.release()
+                }
+
+                is ViewGroup -> {
+                    release(it)
+                }
             }
         }
     }
@@ -65,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createDivConfiguration(): DivConfiguration {
         return DivConfiguration.Builder(PicassoDivImageLoader(this))
+            .divPlayerFactory(ExoDivPlayerFactory(this))
             .visualErrorsEnabled(true)
             .build()
     }
