@@ -15,7 +15,7 @@ import com.yandex.div.core.player.DivPlayerView
 import com.yandex.div2.DivVideoScale
 import ru.wolfram.divkitsamples.R
 
-internal class ExoDivPlayerView(context: Context) : DivPlayerView(context) {
+class ExoDivPlayerView(context: Context) : DivPlayerView(context) {
     private var playerView = setupPlayerView { PlayerView(context, getAttributeSet()) }
 
     private var _attachedPlayer: DivPlayer? = null
@@ -24,9 +24,11 @@ internal class ExoDivPlayerView(context: Context) : DivPlayerView(context) {
 
     private var didFallbackToSurfaceView: Boolean = false
 
+    @OptIn(UnstableApi::class)
     override fun attach(player: DivPlayer) {
         detach()
         playerView.player = (player as ExoDivPlayer).player
+        playerView.showController()
         _attachedPlayer = player
         player.setSource(player.src, player.config)
         player.prepare()

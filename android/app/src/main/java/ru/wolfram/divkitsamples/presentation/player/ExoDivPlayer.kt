@@ -1,6 +1,7 @@
 package ru.wolfram.divkitsamples.presentation.player
 
 import android.content.Context
+import android.util.Log
 import androidx.annotation.OptIn
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
@@ -16,6 +17,7 @@ class ExoDivPlayer(
 ) : DivPlayer {
 
     val player by lazy {
+        Log.e("DivKit", "ExoPlayer created")
         ExoPlayer.Builder(context).build()
     }
 
@@ -32,6 +34,7 @@ class ExoDivPlayer(
     }
 
     override fun seek(toMs: Long) {
+        Log.e("DivKit", "seek to ms: $toMs")
         player.seekTo(toMs)
     }
 

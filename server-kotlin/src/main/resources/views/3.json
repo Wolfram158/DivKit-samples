@@ -32,14 +32,9 @@
         "value": 0
       },
       {
-        "name": "play_visibility",
+        "name": "button_url",
         "type": "string",
-        "value": "visible"
-      },
-      {
-        "name": "pause_visibility",
-        "type": "string",
-        "value": "gone"
+        "value": "https://yastatic.net/s3/home/divkit/play_button.png"
       }
     ],
     "states": [
@@ -118,7 +113,7 @@
                 },
                 {
                   "type": "control_button",
-                  "image_url": "https://yastatic.net/s3/home/divkit/play_button.png",
+                  "image_url": "@{button_url}",
                   "margins": {
                     "right": 15
                   },
@@ -126,45 +121,26 @@
                     "top": 3,
                     "bottom": 3
                   },
-                  "visibility": "@{play_visibility}",
                   "actions": [
                     {
                       "log_id": "play",
+                      "is_enabled": "@{button_url == 'https://yastatic.net/s3/home/divkit/play_button.png'}",
                       "url": "div-action://video?id=video1&action=start"
                     },
                     {
-                      "log_id": "make_play_button_gone",
-                      "url": "div-action://set_variable?name=play_visibility&value=gone"
-                    },
-                    {
-                      "log_id": "make_pause_button_visible",
-                      "url": "div-action://set_variable?name=pause_visibility&value=visible"
-                    }
-                  ]
-                },
-                {
-                  "type": "control_button",
-                  "image_url": "https://yastatic.net/s3/home/divkit/pause_button.png",
-                  "margins": {
-                    "right": 15
-                  },
-                  "paddings": {
-                    "top": 3,
-                    "bottom": 3
-                  },
-                  "visibility": "@{pause_visibility}",
-                  "actions": [
-                    {
                       "log_id": "pause",
+                      "is_enabled": "@{button_url == 'https://yastatic.net/s3/home/divkit/pause_button.png'}",
                       "url": "div-action://video?id=video1&action=pause"
                     },
                     {
-                      "log_id": "make_play_button_visible",
-                      "url": "div-action://set_variable?name=play_visibility&value=visible"
+                      "log_id": "make_play_button_gone",
+                      "is_enabled": "@{button_url == 'https://yastatic.net/s3/home/divkit/play_button.png'}",
+                      "url": "div-action://set_variable?name=button_url&value=https://yastatic.net/s3/home/divkit/pause_button.png"
                     },
                     {
                       "log_id": "make_pause_button_gone",
-                      "url": "div-action://set_variable?name=pause_visibility&value=gone"
+                      "is_enabled": "@{button_url == 'https://yastatic.net/s3/home/divkit/pause_button.png'}",
+                      "url": "div-action://set_variable?name=button_url&value=https://yastatic.net/s3/home/divkit/play_button.png"
                     }
                   ]
                 }
